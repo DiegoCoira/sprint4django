@@ -47,8 +47,9 @@ def guardar_comentario(request, cancion_id):
 		return None
 
 	json_peticion = json.loads(request.body)
-	comentraio = Tcomentarios()
+	comentario = Tcomentarios()
 	comentario.comentario = json_peticion['nuevo_comentario']
 	comentario.cancion = Tcanciones.objects.get(id = cancion_id)
+	comentario.usuario= NULL
 	comentario.save()
 	return JsonResponse({"status": "OK"})
