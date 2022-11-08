@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import json
+import time
+from datetime import date
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Tcanciones, Tcomentarios
@@ -50,6 +52,6 @@ def guardar_comentario(request, cancion_id):
 	comentario = Tcomentarios()
 	comentario.comentario = json_peticion['nuevo_comentario']
 	comentario.cancion = Tcanciones.objects.get(id = cancion_id)
-	comentario.usuario= NULL
+	comentario.fecha = date.today()
 	comentario.save()
 	return JsonResponse({"status": "OK"})
